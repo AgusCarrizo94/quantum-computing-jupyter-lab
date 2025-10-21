@@ -5,17 +5,23 @@ services:
     image: jupyter/base-notebook:latest
     container_name: jupyterlab
     restart: unless-stopped
+    user: root
     ports:
       - "8888:8888"
     volumes:
       # You can replace "./notebooks" with any folder you want to persist
-      - ./notebooks:/home/jovyan
+      - ./notebooks:/home/jovyan/notebooks
+      - ./setup.sh:/home/setup.sh
     environment:
       - JUPYTER_ENABLE_LAB=yes
       - JUPYTER_TOKEN=token
       # Optional: disable password entirely (redundant when using token)
       - JUPYTER_PASSWORD=
-    command: start-notebook.sh --NotebookApp.token='${JUPYTER_TOKEN}' --NotebookApp.password=''
+    command: >
+      bash -c "
+      sudo bash /home/setup.sh &&
+      start-notebook.sh --NotebookApp.token='${JUPYTER_TOKEN}' --NotebookApp.password=''
+      "
 
 volumes:
   jupyter_data:
