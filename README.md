@@ -61,13 +61,9 @@ gemini
    - Authorize the application
    - Copy the authorization code back to the terminal
 
+
 ![Gemini CLI Authentication Flow](docs/images/gemini-cli-auth.png)
 
-Alternatively, if you have the OAuth credentials file:
-
-```bash
-gemini auth login --credentials /path/to/credentials.json
-```
 
 ### 4. Access JupyterLab
 
