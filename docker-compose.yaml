@@ -12,6 +12,7 @@ services:
       # You can replace "./notebooks" with any folder you want to persist
       - ./notebooks:/home/jovyan/notebooks
       - ./setup.sh:/home/setup.sh
+      - ./integrations:/home/integrations
     environment:
       - JUPYTER_ENABLE_LAB=yes
       - JUPYTER_TOKEN=token
