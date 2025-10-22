@@ -49,31 +49,19 @@ This will:
 
 ### 3. Configure Gemini CLI with OAuth Credentials
 
-#### Obtain Google Cloud OAuth Credentials
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select an existing one
-3. Enable the **Generative Language API**
-4. Go to **APIs & Services** > **Credentials**
-5. Click **Create Credentials** > **OAuth client ID**
-6. Configure the consent screen if prompted
-7. Select **Desktop app** as application type
-8. Download the JSON credentials file
-
-#### Configure Gemini CLI Inside JupyterLab
-
-1. Access JupyterLab terminal (see next section)
-2. Run the Gemini authentication command:
+Run the following command in a terminal inside jupyter lab to configure the Gemini CLI:
 
 ```bash
-gemini auth login
+gemini
 ```
 
-3. Follow the authentication flow:
+3. Follow the authentication flow (review provided image):
    - The CLI will provide a URL
    - Open the URL in your browser
    - Authorize the application
    - Copy the authorization code back to the terminal
+
+![Gemini CLI Authentication Flow](docs/images/gemini-cli-auth.png)
 
 Alternatively, if you have the OAuth credentials file:
 
@@ -97,32 +85,6 @@ You can access JupyterLab directly with the token in the URL:
 http://localhost:8888/?token=token
 ```
 
-### 5. Run Gemini Inside JupyterLab Terminal
-
-1. In JupyterLab, click **File** > **New** > **Terminal**
-2. You can now use the Gemini CLI:
-
-```bash
-# Test Gemini CLI
-gemini --version
-
-# Ask a question
-gemini ask "Explain quantum entanglement"
-
-# Use Gemini for code generation
-gemini generate "Write a Python function to create a Bell state in Qiskit"
-```
-
-## Using Qiskit
-
-The environment comes pre-installed with Python. Install Qiskit in a notebook or terminal:
-
-```bash
-pip install qiskit qiskit-aer qiskit-visualization
-```
-
-Then create quantum circuits in your notebooks!
-
 ## Managing the Environment
 
 **Stop the container:**
@@ -145,24 +107,6 @@ docker compose restart
 docker compose up -d --build
 ```
 
-## Useful Documentation
-
-- **Gemini CLI Documentation**: [https://ai.google.dev/gemini-api/docs/cli](https://ai.google.dev/gemini-api/docs/cli)
-- **Qiskit Documentation**: [https://qiskit.org/documentation/](https://qiskit.org/documentation/)
-- **Docker Documentation**: [https://docs.docker.com/](https://docs.docker.com/)
-- **Docker Compose Documentation**: [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
-- **JupyterLab Documentation**: [https://jupyterlab.readthedocs.io/](https://jupyterlab.readthedocs.io/)
-
-## Project Structure
-
-```
-.
-├── docker-compose.yaml    # Docker Compose configuration
-├── setup.sh              # Setup script for container initialization
-├── notebooks/            # Your Jupyter notebooks (persisted)
-└── README.md            # This file
-```
-
 ## Troubleshooting
 
 **Port 8888 already in use:**
@@ -181,3 +125,11 @@ docker compose logs jupyterlab
 docker compose down -v
 docker compose up -d
 ```
+
+## Useful Documentation
+
+- **Gemini CLI Documentation**: [https://ai.google.dev/gemini-api/docs/cli](https://ai.google.dev/gemini-api/docs/cli)
+- **Qiskit Documentation**: [https://qiskit.org/documentation/](https://qiskit.org/documentation/)
+- **Docker Documentation**: [https://docs.docker.com/](https://docs.docker.com/)
+- **Docker Compose Documentation**: [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
+- **JupyterLab Documentation**: [https://jupyterlab.readthedocs.io/](https://jupyterlab.readthedocs.io/)
