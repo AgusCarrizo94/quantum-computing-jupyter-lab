@@ -1,71 +1,122 @@
-# Quantum Computing Jupyter Lab
+<div align="center">
 
-A Docker-based JupyterLab environment for quantum computing experiments using Qiskit and Google's Gemini AI CLI.
+# 🚀 Quantum Computing Lab
 
-## Prerequisites
+### *Explore quantum computing with Qiskit powered by Google Gemini AI*
 
-### Install Docker
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![JupyterLab](https://img.shields.io/badge/JupyterLab-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![Qiskit](https://img.shields.io/badge/Qiskit-6929C4?logo=qiskit&logoColor=white)](https://qiskit.org/)
+[![Gemini](https://img.shields.io/badge/Gemini_AI-8E75B2?logo=google&logoColor=white)](https://ai.google.dev/)
 
-#### **macOS**
-Install **OrbStack** (recommended for Mac):
-1. Visit [https://orbstack.dev/](https://orbstack.dev/)
+A production-ready Docker environment for quantum computing experiments combining **JupyterLab**, **Qiskit**, and **Google Gemini AI CLI**.
+
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [Prerequisites](#-prerequisites)
+- [Getting Started](#-getting-started)
+- [Gemini Authentication](#-gemini-authentication)
+- [Accessing JupyterLab](#-accessing-jupyterlab)
+- [Managing the Environment](#-managing-the-environment)
+- [Troubleshooting](#-troubleshooting)
+- [Documentation](#-documentation)
+
+---
+
+## 🔧 Prerequisites
+
+### Docker Installation
+
+<details>
+<summary><b>🍎 macOS</b></summary>
+
+<br>
+
+#### Option 1: OrbStack (Recommended)
+**Lighter and faster than Docker Desktop**
+
+1. Visit **[OrbStack](https://orbstack.dev/)**
 2. Download and install OrbStack
 3. Launch OrbStack from Applications
-4. OrbStack is lighter and faster than Docker Desktop on Mac
 
-Alternatively, you can use **Docker Desktop**:
-1. Visit [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-2. Download Docker Desktop for Mac
-3. Install and launch Docker Desktop
+#### Option 2: Docker Desktop
 
-#### **Windows**
-Install **Docker Desktop**:
-1. Visit [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+1. Visit **[Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)**
+2. Download and install Docker Desktop
+3. Launch Docker Desktop
+
+</details>
+
+<details>
+<summary><b>🪟 Windows</b></summary>
+
+<br>
+
+#### Docker Desktop
+
+1. Visit **[Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)**
 2. Download Docker Desktop for Windows
 3. Install Docker Desktop
-4. Ensure WSL 2 backend is enabled during installation
+4. ⚠️ **Important:** Ensure WSL 2 backend is enabled during installation
 5. Launch Docker Desktop
 
-## Setup Instructions
+</details>
 
-### 1. Clone or Navigate to This Repository
+---
+
+## 🚀 Getting Started
+
+### Step 1: Clone or Navigate to Repository
 
 ```bash
-cd /path/to/quantum-computing-jupyter-lab
+cd /path/to/quantum-computing-lab
 ```
 
-### 2. Start the Docker Compose Stack
+### Step 2: Launch the Environment
 
-Run the following command to start JupyterLab in detached mode:
+Start JupyterLab in detached mode:
 
 ```bash
 docker compose up -d
 ```
 
-This will:
-- Pull the Jupyter base notebook image
-- Install vim, curl, Node.js, and Gemini CLI
-- Start JupyterLab on port 8888
+**What happens:**
+- 📦 Pulls the Jupyter base notebook image
+- 🛠️ Installs vim, curl, Node.js, and Gemini CLI
+- 🌐 Starts JupyterLab on port `8888`
 
-### 3. Configure Gemini CLI with OAuth Credentials
+---
 
-Run the following command in a terminal inside jupyter lab to configure the Gemini CLI:
+## 🔐 Gemini Authentication
+
+### Configure Gemini CLI
+
+Once inside JupyterLab, open a terminal and run:
 
 ```bash
 gemini
 ```
 
-3. Follow the authentication flow (review provided image):
-   - The CLI will provide a URL
-   - Open the URL in your browser
-   - Authorize the application
-   - Copy the authorization code back to the terminal
+### Authentication Flow
 
+Follow these steps to authenticate:
+
+1. **Copy the URL** provided by the CLI
+2. **Open the URL** in your browser
+3. **Authorize** the application with your Google account
+4. **Copy the authorization code** back to the terminal
+
+> 💡 **Visual Guide:** See the authentication flow below
 
 ![Gemini CLI Authentication Flow](docs/images/gemini-cli-auth.png)
 
+---
 
-### 4. Access JupyterLab
+## 🌐 Accessing JupyterLab
 
 Open your browser and navigate to:
 
@@ -73,59 +124,71 @@ Open your browser and navigate to:
 http://localhost:8888
 ```
 
-**Login credentials:**
-- Token: `token` (as configured in docker-compose.yaml)
+### 🔑 Login Credentials
 
-You can access JupyterLab directly with the token in the URL:
+| Field | Value |
+|-------|-------|
+| **Token** | `token` |
+
+### Quick Access URL
+
 ```
 http://localhost:8888/?token=token
 ```
 
-## Managing the Environment
+---
 
-**Stop the container:**
+## 🎮 Managing the Environment
+
+### Common Commands
+
+| Action | Command |
+|--------|---------|
+| **Stop container** | `docker compose down` |
+| **View logs** | `docker compose logs -f` |
+| **Restart container** | `docker compose restart` |
+| **Rebuild** | `docker compose up -d --build` |
+
+---
+
+## 🔍 Troubleshooting
+
+### Port Already in Use
+
+If port `8888` is already occupied:
+
 ```bash
-docker compose down
-```
-
-**View logs:**
-```bash
-docker compose logs -f
-```
-
-**Restart the container:**
-```bash
-docker compose restart
-```
-
-**Rebuild after changes:**
-```bash
-docker compose up -d --build
-```
-
-## Troubleshooting
-
-**Port 8888 already in use:**
-```bash
-# Change the port in docker-compose.yaml from "8888:8888" to "8889:8888"
+# Edit docker-compose.yaml: change "8888:8888" to "8889:8888"
 # Then access via http://localhost:8889
 ```
 
-**Container won't start:**
+### Container Won't Start
+
+Check the logs for errors:
+
 ```bash
 docker compose logs jupyterlab
 ```
 
-**Reset everything:**
+### Reset Everything
+
+Nuclear option - complete reset:
+
 ```bash
 docker compose down -v
 docker compose up -d
 ```
 
-## Useful Documentation
+---
 
-- **Gemini CLI Documentation**: [https://ai.google.dev/gemini-api/docs/cli](https://ai.google.dev/gemini-api/docs/cli)
-- **Qiskit Documentation**: [https://qiskit.org/documentation/](https://qiskit.org/documentation/)
-- **Docker Documentation**: [https://docs.docker.com/](https://docs.docker.com/)
-- **Docker Compose Documentation**: [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
-- **JupyterLab Documentation**: [https://jupyterlab.readthedocs.io/](https://jupyterlab.readthedocs.io/)
+## 📚 Documentation
+
+### Official Resources
+
+| Resource | Link |
+|----------|------|
+| **Gemini CLI** | [ai.google.dev/gemini-api/docs/cli](https://ai.google.dev/gemini-api/docs/cli) |
+| **Qiskit** | [qiskit.org/documentation](https://qiskit.org/documentation/) |
+| **Docker** | [docs.docker.com](https://docs.docker.com/) |
+| **Docker Compose** | [docs.docker.com/compose](https://docs.docker.com/compose/) |
+| **JupyterLab** | [jupyterlab.readthedocs.io](https://jupyterlab.readthedocs.io/) |
